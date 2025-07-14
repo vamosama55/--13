@@ -29,6 +29,7 @@
             left: 0;
             width: 100%;
             height: 100%;
+            /* Using a placeholder image as the original URL might not be stable */
             background-image: url('https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
@@ -47,12 +48,38 @@
             z-index: -1;
         }
 
-        header {
-            text-align: center;
-            padding: 2rem;
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
             background-color: rgba(70, 0, 0, 0.7);
-            margin-bottom: 2rem;
             border-bottom: 3px solid #8B0000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #FFD700;
+        }
+
+        .name {
+            font-size: 1.2rem;
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        .title-container {
+            text-align: center;
+            flex-grow: 1;
         }
 
         header h1 {
@@ -108,7 +135,8 @@
             display: inline-block;
         }
 
-        #menu a:hover {
+        #menu a:hover,
+        #menu a.active { /* Added active state for highlighting */
             background-color: #FFD700;
             color: #8B0000;
             transform: translateY(-3px);
@@ -168,6 +196,42 @@
         .question h3 {
             color: #FFD700;
             margin-bottom: 1rem;
+            cursor: pointer; /* Make the question clickable */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 0.5rem; /* Add padding to separate from potential border */
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3); /* Subtle border */
+            transition: border-bottom 0.3s ease;
+        }
+
+        .question h3:hover {
+            border-bottom: 1px solid #FFD700; /* Highlight border on hover */
+        }
+
+        .question h3 .toggle-icon {
+            font-size: 1.8rem; /* Larger icon */
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .question h3.expanded .toggle-icon {
+            transform: rotate(45deg); /* Rotate for a "close" effect */
+        }
+
+        .answer-content {
+            display: none; /* Hidden by default */
+            padding-top: 1rem; /* Space between question and answer */
+            animation: slideDown 0.5s ease-out; /* Animation for showing answer */
+        }
+
+        .answer-content.show {
+            display: block; /* Show when 'show' class is added */
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         footer {
@@ -216,8 +280,89 @@
             color: #8B0000;
         }
 
+        /* Modal Styles */
+        .modal-overlay {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 100; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+            align-items: center; /* Center content vertically */
+            justify-content: center; /* Center content horizontally */
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            display: flex; /* Only display flex when 'show' class is present */
+        }
+
+        .modal-content {
+            background-color: rgba(70, 0, 0, 0.9);
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            text-align: center;
+            color: #FFD700;
+            font-size: 1.2rem;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .modal-overlay.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-button {
+            color: #FFD700;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Phrase styling for clickability */
+        .clickable-phrase {
+            cursor: pointer;
+            text-decoration: underline;
+            color: #FFD700;
+            transition: color 0.3s ease;
+        }
+
+        .clickable-phrase:hover {
+            color: #fff;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .logo-container {
+                margin-bottom: 1rem;
+            }
+            
             header h1 {
                 font-size: 2rem;
             }
@@ -238,6 +383,16 @@
                 flex-direction: column;
                 align-items: center;
             }
+
+            .modal-content {
+                padding: 20px;
+                font-size: 1rem;
+            }
+            .close-button {
+                font-size: 24px;
+                top: 5px;
+                right: 15px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -256,6 +411,15 @@
             .content-box p, .content-box li {
                 font-size: 1rem;
             }
+            
+            .logo {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .name {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -263,10 +427,18 @@
     <div class="background-image"></div>
     <div class="overlay"></div>
     
-    <header>
-        <h1>عقيدة التجسد الإلهي</h1>
-        <p>"عظيم هو سر التقوى: الله ظهر في الجسد" (1 تيموثاوس 3:16)</p>
-    </header>
+    <div class="header-container">
+        <div class="title-container">
+            <h1>عقيدة التجسد الإلهي</h1>
+            <p>"عظيم هو سر التقوى: الله ظهر في الجسد" (1 تيموثاوس 3 : 16)</p>
+        </div>
+        
+        <div class="logo-container">
+            <div class="name">Ⲡⲓⲛⲉϣⲧ</div>
+            <!-- Placeholder image for logo -->
+            <img src="R.jpg.jpeg" alt="لوجو" class="logo">
+        </div>
+    </div>
 
     <main>
         <section id="menu">
@@ -275,9 +447,9 @@
                 <li><a href="#concept">مفهوم التجسد الإلهي</a></li>
                 <li><a href="#can-god-incarnate">هل الله يمكنه أن يتجسد؟</a></li>
                 <li><a href="#importance">أهمية عقيدة التجسد الإلهي</a></li>
+                <li><a href="#preparation">تهيئة الأذهان للتجسد الإلهي</a></li>
                 <li><a href="#how">كيف يجسد كلمة الله؟</a></li>
                 <li><a href="#why">لماذا التجسد؟</a></li>
-                <li><a href="#preparation">تهيئة الأذهان للتجسد الإلهي</a></li>
                 <li><a href="#liturgy">التجسد في صلوات القداس الإلهي</a></li>
                 <li><a href="#questions">أسئلة حول التجسد الإلهي</a></li>
             </ul>
@@ -286,8 +458,8 @@
         <section id="concept" class="content-section">
             <h2>أولاً: مفهوم التجسد الإلهي</h2>
             <div class="content-box">
-                <p>إن الله وهو ملك الملوك ورب الأرباب قد أخلى ذاته من صورة المجد وإتخذ جسداً إنسانياً (طبيعة بشرية) فنقول: "تجسد وتأنس". فالله غير المنظور صار منظوراً وظهر في الجسد "عظيم هو سر التقوى الله ظهر في الجسد" (1 تيموثاوس 3:16).</p>
-                <p>والكلمة صار جسداً وحل بيننا ورأينا مجده مجداً كما لوحيد من الآب معلوم نعمة وحقاً (يوحنا 1:14).</p>
+                <p>إن الله وهو ملك الملوك ورب الأرباب قد أخلى ذاته من صورة المجد وإتخذ جسداً إنسانياً (طبيعة بشرية) فنقول: "تجسد وتأنس". فالله غير المنظور صار منظوراً وظهر في الجسد "عظيم هو سر التقوى الله ظهر في الجسد" (1 تيموثاوس 3 : 16).</p>
+                <p>والكلمة صار جسداً وحل بيننا ورأينا مجده مجداً كما لوحيد من الآب معلوم نعمة وحقاً (يوحنا 1: 14).</p>
             </div>
         </section>
 
@@ -308,37 +480,25 @@
                 </ol>
             </div>
         </section>
-
-        <section id="how" class="content-section">
-            <h2>رابعاً: كيف يجسد كلمة الله؟</h2>
-            <div class="content-box">
-                <p>بعد أن جاء ملء الزمان (الوقت الذى رآه الله مناسباً) بعد أن أعد العالم والبشرية لمجئ ابنه أرسل الملاك جبرائيل بالبشارة للعذراء "الروح القدس يحل عليك وقوة العلى تظللك فلذلك أيضا القدوس المولود منك يدعى ابن الله" (لوقا 1:35). فطهر الروح القدس أحشاء العذراء وكون منها جسد ربنا يسوع ناسوتاً خالياً من الخطية لأنه أتى بدون زرع بشر، وفي اللحظة الأولى التي هيأ الروح القدس فيها الناسوت في بطن العذراء إتحد اللاهوت به. فلم تكن هناك لحظة من الزمن كان فيها الناسوت خالياً من لاهوته، لذلك تسمى الكنيسة العذراء مريم (معمل الإتحاد غير المفترق)، وبعد أن تمت أيام الحبل المقدس ولدت العذراء الطفل يسوع ابن الله الكلمة المتجسد وهذا ما قاله الملاك ليوسف النجار "أن الذى حبل به فيها هو من الروح القدس" (متى 1:20).</p>
-            </div>
-        </section>
-
-        <section id="why" class="content-section">
-            <h2>خامساً: لماذا التجسد؟</h2>
-            <div class="content-box">
-                <p><strong>تجسد ربنا يسوع من أجل أن:</strong></p>
-                <ol>
-                    <li><strong>يفدينا:</strong> "إن ابن الإنسان لم يأت ليخدم بل ليخدم وليبذل نفسه فدية عن كثيرين" (متى 20:28): "إن ابن الإنسان قد جاء لكى يخلص ما قد هلك" (متى 18:11).</li>
-                    <li><strong>يجدد طبيعتنا:</strong> أي يجدد خلق الإنسان فالطبيعة البشرية بتجسد ربنا يسوع لم تعد فاسدة فقد بارك هذه الطبيعة لتعود كما كانت على صورة الله ومثاله "أنا أتيت لتكون لهم حياة وليكون لهم أفضل" (يوحنا 10:10): "لذلك نقول في القداس الغريغوري:"باركت طبيعتي فيك".</li>
-                    <li><strong>يعلمنا:</strong> "تعلموا منى لأنى وديع ومتواضع القلب فتجدوا راحة لنفوسكم" (متى 11:28): "وقال للتلاميذ: "أنتم تدعوننى معلماً وسيداً وحسناً تقولون لأنى أنا كذلك" (يوحنا 13:13).</li>
-                    <li><strong>ينوب عن البشرية في كل عمل صالح:</strong> "يليق بنا أن نكمل كل بر" (متى 3:15): ويقول القديس أثناسيوس الرسولي: كان للخطية نتيجتان هما هلاك الإنسان وإغضاب قلب الله فجاء ربنا يسوع ليخلص الإنسان الهالك إذ ناب عنا في الموت وفى دفع ثمن الخطية، وجاء ليصلح قلب الله الغاضب بأن يقدم له ناسوتاً كاملاً يرضيه وهكذا ناب عنا في تكميل الناسوت وفى كل عمل صالح.</li>
-                    <li><strong>يقدم لنا مثلاً:</strong> "إني أعطيتكم مثلاً حتى كما صنعت أنا بكم تصنعون أنتم أيضاً" (يوحنا 13:15).</li>
-                    <li><strong>يفتح الطريق لسكنى الله في الإنسان:</strong> "من يأكل جسدي ويشرب دمي يثبت في وأنا فيه" (يوحنا 6:56): "هأنذا واقف على الباب وأقرع. إن سمع أحد صوتى وفتح الباب أدخل إليه وأتعشى معه وهو معى" (رؤيا 3:20).</li>
-                </ol>
-                <p>يقول القديس موسى أسقف الشباب: "اللاهوت إتحد بناسوت حقيقي كامل بلا خطية. تمهيداً ليسكن الله فينا بنعمه ومواهبه. وكما يدخل الهواء إلى صدر الإنسان دون أن يتحول الإنسان إلى هواء كذلك يسكن الله في داخلنا بالمحبة. وكما تدخل الشمس إلى الحجرة فتضيء جنباتها وتدفئها كذلك يدخل شمس البر إلى حياتنا فيحييها من موت الخطية دون أن نتحول نحن إلى آلهة".</p>
-            </div>
-        </section>
-
         <section id="preparation" class="content-section">
-            <h2>سادساً: تهيئة الأذهان للتجسد الإلهي</h2>
+            <h2>رابعاً: تهيئة الأذهان للتجسد الإلهي</h2>
             <div class="content-box">
-                <p>ظل الله يهيئ الأذهان للتجسد الإلهي عبر القرون الطويلة لعمر البشرية، فاختار له شعباً وميزه بالشريعة والناموس وأرسل إليهم الأنبياء الذين تنبأوا عن مجئ ابنه الوحيد بتفصيلات مدهشة، وكذلك كانت هناك نبوات، ظهورات، رموز مهدت للتجسد...</p>
+                <p>العقل البشري يصعُب عليه استيعاب ان يتجسد الله الخالق ، و ذلك لأن الانسان بطبيعته كائن محدود و الله غير محدود. هذا جعل الله يُمهد للإنسان مُنذ أدم أنه سوف يتم الخلاص به ، فجعل له شعبًا مُختارًا و ميزه عن بقية الشعوب بالشريعة و الناموس و أرسل لهم الأنبياء الذي من خلالهم كان يهيئ أيضا ل مجيئه ، و لكن لم تكن هذه هي الطريقة الوحيدة لكي يهيئ شعبه بل هيأهم عن طريق :-</p>
                 
                 <h3>1- نبوات مهدت للتجسد</h3>
-                <p>تنبأ الأنبياء عن نسب ربنا يسوع، فذكروا أنه سيأتي من نسل إمرأة (تكوين 3:15)، ومن نسل سام (تكوين 9:26)، ومن إبراهيم (تكوين 22:18)، ومن اسحق دون إسماعيل (تكوين 21:12)، ومن سبط يهوذا (تكوين 49:10)؛ ومن نسل داود (مزمور 89). تنبأ أشعياء أنه سيولد من عذراء (أشعياء 7:14)، تنبأ ميخا أنه سيولد في مدينة "بيت لحم" (ميخا 5:2)، تنبأ دانيال عن زمن مجيئه (دانيال 9:24). تنبأ داود عن المجوس وهداياهم (مزمور 72:10)، تنبأ أرميا عن مذبحة بيت لحم (أرميا 31:15)، تنبأ أشعياء عن مجيء العائلة المقدسة إلى مصر (أشعياء 19:1). تنبأ هوشع عن عودة العائلة المقدسة إلى فلسطين (هوشع 11:1).</p>
+                <p>تنبأ الأنبياء عن نسب ربنا يسوع، فذكروا أنه سيأتي من نسل إمرأة (تكوين 3 : 15)
+                    <br>ومن نسل سام<a href="https://alketabalmokadas.net/read/AVDDV/GEN.9.26+27">(تكوين 9 : 26)</a>
+                    <br>ومن إبراهيم<a href="https://alketabalmokadas.net/read/AVDDV/GEN.22.18">(تكوين 22 : 18)</a>
+                    <br>ومن اسحق دون إسماعيل <a href="https://alketabalmokadas.net/read/AVDDV/GEN.21.12">(تكوين 21 : 12)</a>
+                    <br>ومن سبط يهوذا<a href="https://alketabalmokadas.net/read/AVDDV/GEN.49.10"> (تكوين 49 : 10)</a>
+                    <br>ومن نسل داود<a href="https://alketabalmokadas.net/read/AVDDV/PSA.89"> (مزمور 89)</a>
+                    <br>تنبأ أشعياء أنه سيولد من عذراء<a href="https://alketabalmokadas.net/read/AVDDV/ISA.7.14"> (أشعياء 7 : 14)</a>
+                    <br>تنبأ ميخا أنه سيولد في مدينة "بيت لحم"<a href="https://alketabalmokadas.net/read/AVDDV/MIC.2.5"> (ميخا 2 : 5)</a>
+                    <br>تنبأ دانيال عن زمن مجيئه<a href="https://alketabalmokadas.net/read/AVDDV/DAN.9.24"> (دانيال 9 : 24)</a>
+                    <br>تنبأ داود عن المجوس وهداياهم<a href="https://alketabalmokadas.net/read/AVDDV/PSA.72.10+11+12+13"> (مزمور 72 : 10)</a>
+                    <br>تنبأ أرميا عن مذبحة بيت لحم<a href="https://alketabalmokadas.net/read/AVDDV/JER.31.15"> (أرميا 31 : 15)</a>
+                    <br>تنبأ أشعياء عن مجيء العائلة المقدسة إلى مصر <a href="https://alketabalmokadas.net/read/AVDDV/ISA.19.1">(أشعياء 19 : 1)</a>
+                    <br>تنبأ هوشع عن عودة العائلة المقدسة إلى فلسطين<a href="https://alketabalmokadas.net/read/AVDDV/HOS.11.1"> (هوشع 11 : 1)</a></p>
                 
                 <h3>2- ظهورات مهدت للتجسد</h3>
                 <p>تمتلئ أسفار العهد القديم بالأحداث التي تعلن عن ظهورات لأقنوم الكلمة بصورة مرئية مثل ظهوره لإبراهيم (تكوين 18:1)، موسى (خروج 3)، منوح وزوجته (قضاة 13)، الفتية الثلاثة في الأتون (دانيال 3)، ورغم أن لكل ظهور مدلوله الخاص ورسالته التي تتعلق بالموقف نفسه، وكذلك تعلن هذه الظهورات عن الله من جهة وتدل على إمكانية تجسده من جهة أخرى فمادام الله إتخذ قديماً هيئة ملاك أو إنسان ليبته– للبشر فيروه ويتحادثوا معه فليس هناك ما يمنع أن يتخذ جسداً حقيقياً في ملء الزمان ليتمم الفداء.</p>
@@ -357,6 +517,32 @@
             </div>
         </section>
 
+        <section id="how" class="content-section">
+            <h2>خامساً: كيف يجسد كلمة الله؟</h2>
+            <div class="content-box">
+               <h3><a href="https://alketabalmokadas.net/read/AVDDV/LUK.1.26+27+28+29+30+31+32+33+34+35">(لوقا 1 : 26-35)</a></h3>
+                <p><span id="incarnation-time-phrase" class="clickable-phrase"> في ملء الزمان</span>  طهر الروح القدس أحشاء العذراء مريم و كون منها جسد ربنا يسوع ناسوتًا خاليًا من الخطية الجدية (لأنه أتى بدون زرع بشر) و مُنذ الوهلة الأولى التي هيأ فيها الروح القدس فيها الناسوت في بطن العذراء اتحد اللاهوت به فلم يكن هناك وهلة من الزمن الناسوت خاليا من اللاهوت ، و نعترف بهذا دائما كل قداس " لاهوته لم يفارق ناسوته لحظة واحدة او طرقة عين " و كانت بطن العذراء هي معمل الاتحاد غير المفترق" (متى 1 : 20)</p>
+            </div>
+        </section>
+
+        <section id="why" class="content-section">
+            <h2>سادسا: لماذا التجسد؟</h2>
+            <div class="content-box">
+                <p><bold>خالق الكل لا يتراجع عن محبته ، و إنه يرغب في أن يفتقد مرضنا و حيرتنا <h4>"القديس الأنبا انطونيوس" </h4></bold></p>
+                <p>الله بعدما فسدت البشرية و جُرحت جُرج عظيم يحتاج إلى طبيب حقيقي يشفي هذا الجرح . افتقدنا الله برحمته مرسلًا لنا ابنه الوحيد الذي هو عقل الآب بذاته بكي يشفي ذلك الجَرح بعدما هيأنا و جعلنا مستعدين و لذلك</p>
+                <p><strong>تجسد ربنا يسوع من أجل أن:</strong></p>
+                <ol>
+                    <li><strong>يفدينا:</strong> "إن ابن الإنسان لم يأت ليخدم بل ليخدم وليبذل نفسه فدية عن كثيرين" (متى 20:28): "إن ابن الإنسان قد جاء لكى يخلص ما قد هلك" (متى 18:11).</li>
+                    <li><strong>يجدد طبيعتنا:</strong> أي يجدد خلق الإنسان فالطبيعة البشرية بتجسد ربنا يسوع لم تعد فاسدة فقد بارك هذه الطبيعة لتعود كما كانت على صورة الله ومثاله "أنا أتيت لتكون لهم حياة وليكون لهم أفضل" (يوحنا 10:10): "لذلك نقول في القداس الغريغوري:"باركت طبيعتي فيك".</li>
+                    <li><strong>يعلمنا:</strong> "تعلموا منى لأنى وديع ومتواضع القلب فتجدوا راحة لنفوسكم" (متى 11:28): "وقال للتلاميذ: "أنتم تدعوننى معلماً وسيداً وحسناً تقولون لأنى أنا كذلك" (يوحنا 13:13).</li>
+                    <li><strong>ينوب عن البشرية في كل عمل صالح:</strong> "يليق بنا أن نكمل كل بر" (متى 3:15): ويقول القديس أثناسيوس الرسولي: كان للخطية نتيجتان هما هلاك الإنسان وإغضاب قلب الله فجاء ربنا يسوع ليخلص الإنسان الهالك إذ ناب عنا في الموت وفى دفع ثمن الخطية، وجاء ليصلح قلب الله الغاضب بأن يقدم له ناسوتاً كاملاً يرضيه وهكذا ناب عنا في تكميل الناسوت وفى كل عمل صالح.</li>
+                    <li><strong>يقدم لنا مثلاً:</strong> "إني أعطيتكم مثلاً حتى كما صنعت أنا بكم تصنعون أنتم أيضاً" (يوحنا 13:15).</li>
+                    <li><strong>يفتح الطريق لسكنى الله في الإنسان:</strong> "من يأكل جسدي ويشرب دمي يثبت في وأنا فيه" (يوحنا 6:56): "هأنذا واقف على الباب وأقرع. إن سمع أحد صوتى وفتح الباب أدخل إليه وأتعشى معه وهو معى" (رؤيا 3:20).</li>
+                </ol>
+                <p>يقول الأنبا موسى أسقف الشباب: "اللاهوت إتحد بناسوت حقيقي كامل بلا خطية. تمهيداً ليسكن الله فينا بنعمه ومواهبه. وكما يدخل الهواء إلى صدر الإنسان دون أن يتحول إلى هواء كذلك يسكن الله في داخلنا بالمحبة. وكما تدخل الشمس إلى الحجرة فتضيء جنباتها وتدفئها كذلك يدخل شمس البر إلى حياتنا فيحييها من موت الخطية دون أن نتحول نحن إلى آلهة".</p>
+            </div>
+        </section>
+
         <section id="liturgy" class="content-section">
             <h2>سابعاً: التجسد في صلوات القداس الإلهي</h2>
             <div class="content-box">
@@ -366,7 +552,7 @@
                     <li><strong>قسمة صوم الميلاد:</strong> الكائن في حضن الآب منذ كل حين أتى وحل في الحشا البتولى غير الدنس ولدته وهي عذراء وبتوليتها مختومة.</li>
                     <li><strong>قسمة الأربعين المقدسة:</strong> نسجد ونمجد إله الآلهة ورب الأرباب للذى تجسد من القديسة مريم ولدته في بيت لحم.</li>
                     <li><strong>الإعتراف الأخير:</strong> إن هذا هو الجسد المحيى الذى أخذه ابنك الوحيد ربنا وإلهنا ومخلصنا يسوع المسيح من سيدتنا ملكتنا كلنا والدة الإله القديسة الطاهرة مريم.</li>
-                    <li><strong>في لحن التوزيع (بي أولك):</strong> يا مريم حملت في بطنك النور العقلى الذى من صلب الآب ولدته بغير دنس.</li>
+                    <li><strong>في لحن التوزيع (بي أويك):</strong> يا مريم حملت في بطنك النور العقلى الذى من صلب الآب ولدته بغير دنس.</li>
                 </ol>
             </div>
         </section>
@@ -375,20 +561,26 @@
             <h2>ثامناً: أسئلة حول التجسد الإلهي</h2>
             <div class="content-box">
                 <div class="question">
-                    <h3>كيف يتجسد الله والجسد يحد من وجوده في كل مكان؟</h3>
-                    <p>التجسد لا يحد من وجود الله في كل مكان، وقد قال ربنا يسوع نفسه "إن إجتمع إثنان أو ثلاثة باسمي فهناك أكون في وسطهم" (متى 18:20).</p>
-                    <p>يقول القديس أثناسيوس الرسولي: مع أنه يحوى كل الأشياء ولا يحتويه شيء إلا أنه كان كلمة في أبيه وحده. وهذا حتى مع وجوده في جسد بشرى معطياً الحياة له فقد كان من الطبيعي أن يمنح الحياة للكون كله في نفس الوقت. ومع كونه حاضراً في كل جزء (من الخليقة بقدرته) فهو خارج كل شيء بجوهره بينما صار معروفاً بأعماله التي عملها في الجسد فإنه كان في نفس الوقت ظاهراً أيضاً بواسطة أعماله في الكون كله.</p>
+                    <h3 class="question-header">كيف يتجسد الله والجسد يحد من وجوده في كل مكان؟ <span class="toggle-icon">+</span></h3>
+                    <div class="answer-content">
+                        <p>التجسد لا يحد من وجود الله في كل مكان، وقد قال ربنا يسوع نفسه "إن إجتمع إثنان أو ثلاثة باسمي فهناك أكون في وسطهم" (متى 18:20).</p>
+                        <p>يقول القديس أثناسيوس الرسولي: مع أنه يحوى كل الأشياء ولا يحتويه شيء إلا أنه كان كلمة في أبيه وحده. وهذا حتى مع وجوده في جسد بشرى معطياً الحياة له فقد كان من الطبيعي أن يمنح الحياة للكون كله في نفس الوقت. ومع كونه حاضراً في كل جزء (من الخليقة بقدرته) فهو خارج كل شيء بجوهره بينما صار معروفاً بأعماله التي عملها في الجسد فإنه كان في نفس الوقت ظاهراً أيضاً بواسطة أعماله في الكون كله.</p>
+                    </div>
                 </div>
 
                 <div class="question">
-                    <h3>كيف استطاع البشر أن يروا الله الذي لا يُرى؟</h3>
-                    <p>صحيح أن الله قال لموسى في القديم "لن الإنسان لا يراني ويعيش" (خروج 33:20).</p>
-                    <p>وقال بولس عن الله "الذى لم يره أحد من الناس ولا يقدر أن يراه" (1 تيموثاوس 6:16)، ولكن هذا الكلام ينطبق على اللاهوت مجرداً. وهذا أمر مستحيل فعلاً ولا يستطيع الإنسان ولا يحتمل رؤية اللاهوت. لذلك حين أراد الله أن ينزل إلى البشر لإتمام الفداء كان لابد أن يتخذ جسداً يخفى به اللاهوت. فتجسد من الروح القدس ومن العذراء مريم، ولأن الابن مساو للآب في الجوهر فإن من راه فقد رأى الآب (يوحنا 14:9).</p>
+                    <h3 class="question-header">كيف استطاع البشر أن يروا الله الذي لا يُرى؟ <span class="toggle-icon">+</span></h3>
+                    <div class="answer-content">
+                        <p>صحيح أن الله قال لموسى في القديم "لن الإنسان لا يراني ويعيش" (خروج 33:20).</p>
+                        <p>وقال بولس عن الله "الذى لم يره أحد من الناس ولا يقدر أن يراه" (1 تيموثاوس 6:16)، ولكن هذا الكلام ينطبق على اللاهوت مجرداً. وهذا أمر مستحيل فعلاً ولا يستطيع الإنسان ولا يحتمل رؤية اللاهوت. لذلك حين أراد الله أن ينزل إلى البشر لإتمام الفداء كان لابد أن يتخذ جسداً يخفى به اللاهوت. فتجسد من الروح القدس ومن العذراء مريم، ولأن الابن مساو للآب في الجوهر فإن من راه فقد رأى الآب (يوحنا 14:9).</p>
+                    </div>
                 </div>
 
                 <div class="question">
-                    <h3>هل التجسد يغير الله؟ لأنه قبل التجسد لم يكن له جسد وبعد التجسد صار له جسد؟</h3>
-                    <p>نؤمن في عقيدتنا أن الاتحاد بين اللاهوت والناسوت بدون إختلاط ولا امتزاج ولا تغيير ولا تحول، فاللاهوت لم يتغير بسبب إتحاده بالناسوت ولكن هناك قدرات كانت في الله منذ الأزل ولكنه يظهرها في الوقت المناسب، وهذا لا يعني أن الله قد تغير. فالتجسد ليس إضافة جديدة إلى طبيعة الله لأن طبيعة الله لم تضاف إليها المحبة مثلاً التي أعلنها على الصليب ولا أضيف إليها القدرة أن يظهر في الجسد. لكنه لا قدرات كانت فيه وتظهر في الوقت المناسب، ولكي يؤكد كلمة الله أنه لم يتغير ولم يفقد شيئاً من قدراته الإلهية بسبب التجسد تعمد أن تظهر قدراته الخارقة على الطبيعة وهو يعاني آلام الموت على الصليب ولهذا اختفت الشمس وأظلمت والأرض تزلزلت والصخور تشققت حتى إن قائد المئة لما رأى كل هذا قال: "حقاً كان هذا ابن الله" (متى 27:54): وبهذا تأكد لنا أن الله الكلمة المتجسد لم يفقد شيئاً من قدراته حتى وهو في أقصى آلام الصليب.</p>
+                    <h3 class="question-header">هل التجسد يغير الله؟ لأنه قبل التجسد لم يكن له جسد وبعد التجسد صار له جسد؟ <span class="toggle-icon">+</span></h3>
+                    <div class="answer-content">
+                        <p>نؤمن في عقيدتنا أن الاتحاد بين اللاهوت والناسوت بدون إختلاط ولا امتزاج ولا تغيير ولا تحول، فاللاهوت لم يتغير بسبب إتحاده بالناسوت ولكن هناك قدرات كانت في الله منذ الأزل ولكنه يظهرها في الوقت المناسب، وهذا لا يعني أن الله قد تغير. فالتجسد ليس إضافة جديدة إلى طبيعة الله لأن طبيعة الله لم تضاف إليها المحبة مثلاً التي أعلنها على الصليب ولا أضيف إليها القدرة أن يظهر في الجسد. لكنه لا قدرات كانت فيه وتظهر في الوقت المناسب، ولكي يؤكد كلمة الله أنه لم يتغير ولم يفقد شيئاً من قدراته الإلهية بسبب التجسد تعمد أن تظهر قدراته الخارقة على الطبيعة وهو يعاني آلام الموت على الصليب ولهذا اختفت الشمس وأظلمت والأرض تزلزلت والصخور تشققت حتى إن قائد المئة لما رأى كل هذا قال: "حقاً كان هذا ابن الله" (متى 27:54): وبهذا تأكد لنا أن الله الكلمة المتجسد لم يفقد شيئاً من قدراته حتى وهو في أقصى آلام الصليب.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -400,6 +592,14 @@
     </footer>
 
     <button id="back-to-top" title="العودة إلى الأعلى">↑</button>
+
+    <!-- The Modal HTML Structure -->
+    <div id="myModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <p>اي في الوقت الذي رآه الله مناسبا بعد ان اعد العالم و البشرية</p>
+        </div>
+    </div>
 
     <script>
         // JavaScript Code
@@ -465,7 +665,8 @@
                 
                 menuItems.forEach(item => {
                     item.classList.remove('active');
-                    if (item.getAttribute('href') === `#${current}`) {
+                    // Changed to .includes() for robustness, as href might be "#id" and current is "id"
+                    if (item.getAttribute('href').includes(current) && current !== '') {
                         item.classList.add('active');
                     }
                 });
@@ -501,6 +702,57 @@
             
             // Trigger initial animation check
             animateOnScroll();
+
+            // Modal functionality
+            const phraseElement = document.getElementById('incarnation-time-phrase');
+            const modal = document.getElementById('myModal');
+            const closeButton = document.querySelector('.close-button');
+
+            if (phraseElement && modal && closeButton) {
+                phraseElement.addEventListener('click', function() {
+                    modal.classList.add('show');
+                });
+
+                closeButton.addEventListener('click', function() {
+                    modal.classList.remove('show');
+                });
+
+                // Close the modal if the user clicks outside of the modal content
+                modal.addEventListener('click', function(event) {
+                    if (event.target === modal) {
+                        modal.classList.remove('show');
+                    }
+                });
+            }
+
+            // Accordion functionality for questions and answers
+            const questionHeaders = document.querySelectorAll('.question-header');
+
+            questionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    // Get the sibling answer content div
+                    const answerContent = this.nextElementSibling;
+                    const toggleIcon = this.querySelector('.toggle-icon');
+
+                    // Toggle the 'show' class
+                    if (answerContent.classList.contains('show')) {
+                        answerContent.classList.remove('show');
+                        this.classList.remove('expanded'); // Remove expanded class from header
+                        if (toggleIcon) toggleIcon.textContent = '+'; // Change icon to plus
+                    } else {
+                        // Close other open answers if any (optional, but good for UX)
+                        document.querySelectorAll('.answer-content.show').forEach(openAnswer => {
+                            openAnswer.classList.remove('show');
+                            openAnswer.previousElementSibling.classList.remove('expanded');
+                            openAnswer.previousElementSibling.querySelector('.toggle-icon').textContent = '+';
+                        });
+
+                        answerContent.classList.add('show');
+                        this.classList.add('expanded'); // Add expanded class to header
+                        if (toggleIcon) toggleIcon.textContent = 'x'; // Change icon to 'x' or '−'
+                    }
+                });
+            });
         });
     </script>
 </body>
