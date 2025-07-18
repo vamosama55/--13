@@ -3,1205 +3,755 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>معرض أعمالي في التمثيل</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>عقيدة التجسد الإلهي</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #1a1a2e;
-            --secondary: #16213e;
-            --accent: #e94560;
-            --light: #f1f1f1;
-            --dark: #0f0f1b;
-        }
-        
+        /* CSS Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Tajawal', sans-serif;
         }
-        
+
         body {
-            background-color: var(--light);
-            color: var(--dark);
+            font-family: 'Amiri', serif;
+            color: #fff;
             line-height: 1.6;
-            padding-top: 72px; /* Added to prevent content from hiding under fixed header */
+            position: relative;
+            background-color: #000;
         }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        /* Header */
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: white;
-            padding: 1rem 0;
+
+        .background-image {
             position: fixed;
-            width: 100%;
             top: 0;
-            left: 0; /* Ensure header spans full width */
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Using a placeholder image as the original URL might not be stable */
+            background-image: url('https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -2;
+            opacity: 0.7;
         }
-        
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: -1;
+        }
+
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: relative; /* Added for positioning mobile menu */
+            padding: 1rem 2rem;
+            background-color: rgba(70, 0, 0, 0.7);
+            border-bottom: 3px solid #8B0000;
         }
-        
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .logo img {
-            height: 40px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-        }
-        
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 20px;
-        }
-        
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: 0.3s;
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
-        
-        nav ul li a:hover {
-            background-color: var(--accent);
+            object-fit: cover;
+            border: 2px solid #FFD700;
         }
 
-        /* Hamburger Menu Icon */
-        .menu-toggle {
-            display: none; /* Hidden by default, shown on small screens */
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.8rem;
-            cursor: pointer;
-            padding: 5px;
-            z-index: 1001; /* Ensure it's above other content */
-        }
-        
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://tourismtrek.com/wp-content/uploads/2024/09/%D8%AF%D9%84%D9%8A%D9%84-%D9%83%D9%86%D8%A7%D8%A6%D8%B3-%D9%85%D8%B5%D8%B1-2.webp');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: white;
-            margin-top: 0; /* Removed as body padding-top handles it */
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            animation: fadeIn 1.5s;
-        }
-        
-        .hero p {
+        .name {
             font-size: 1.2rem;
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        .title-container {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #FFD700;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        #menu {
+            background-color: rgba(70, 0, 0, 0.7);
+            padding: 1.5rem;
+            border-radius: 5px;
             margin-bottom: 2rem;
-            animation: fadeIn 2s;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background-color: var(--accent);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: 0.3s;
-            animation: fadeIn 2.5s;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(233, 69, 96, 0.3);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
-        /* About Team Section */
-        .about-team {
-            background-color: var(--secondary);
-            color: white;
-            padding: 80px 0;
-        }
-        
-        .about-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 50px;
-            align-items: center;
-        }
-        
-        .team-description h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--accent);
-        }
-        
-        .team-description p {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-        
-        .team-image img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        
-        /* Story Section */
-        .story-section {
-            background-color: white;
-            padding: 80px 0;
-        }
-        
-        .story-content {
-            max-width: 800px;
-            margin: 0 auto;
+        #menu h2 {
+            color: #FFD700;
+            margin-bottom: 1rem;
             text-align: center;
         }
-        
-        .story-content h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 30px;
+
+        #menu ul {
+            list-style-type: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
         }
-        
-        .story-content p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            text-align: right;
+
+        #menu li {
+            margin: 0.5rem 0;
         }
-        
-        .story-image {
-            margin: 30px auto;
-            max-width: 500px;
-        }
-        
-        .story-image img {
-            width: 100%;
-            border-radius: 10px;
-        }
-        
-        /* Sections */
-        .section {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-            position: relative;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
+
+        #menu a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            background-color: #8B0000;
+            border-radius: 5px;
+            transition: all 0.3s ease;
             display: inline-block;
         }
-        
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
+
+        #menu a:hover,
+        #menu a.active { /* Added active state for highlighting */
+            background-color: #FFD700;
+            color: #8B0000;
+            transform: translateY(-3px);
         }
-        
-        /* Portfolio Section */
-        .portfolio-filter {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
+
+        .content-section {
+            margin-bottom: 3rem;
+            animation: fadeIn 1s ease-in-out;
         }
-        
-        .filter-btn {
-            background: none;
-            border: none;
-            padding: 10px 20px;
-            margin: 0 10px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: bold;
-            color: var(--dark);
-            transition: 0.3s;
-            border-radius: 30px;
-        }
-        
-        .filter-btn.active, .filter-btn:hover {
-            background-color: var(--accent);
-            color: white;
-        }
-        
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .portfolio-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: 0.5s;
-        }
-        
-        .portfolio-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
-        
-        .portfolio-img {
-            height: 250px;
-            overflow: hidden;
-        }
-        
-        .portfolio-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.5s;
-        }
-        
-        .portfolio-item:hover .portfolio-img img {
-            transform: scale(1.1);
-        }
-        
-        .portfolio-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 20px;
-            opacity: 0;
-            transition: 0.5s;
-        }
-        
-        .portfolio-item:hover .portfolio-overlay {
-            opacity: 1;
-        }
-        
-        .portfolio-info h3 {
-            color: white;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .portfolio-info p {
-            color: rgba(255,255,255,0.8);
-        }
-        
-        /* Video Section */
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
-            margin-bottom: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        
-        /* Team Section */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        
-        .team-member {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: 0.3s;
-        }
-        
-        .team-member:hover {
-            transform: translateY(-10px);
-        }
-        
-        .member-img {
-            height: 250px;
-            overflow: hidden;
-        }
-        
-        .member-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .member-info {
-            padding: 20px;
-        }
-        
-        .member-info h3 {
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-            color: var(--primary);
-        }
-        
-        .member-info p {
-            color: var(--accent);
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-        
-        .social-links a {
-            color: var(--dark);
-            font-size: 1.2rem;
-            transition: 0.3s;
-        }
-        
-        .social-links a:hover {
-            color: var(--accent);
-        }
-        
-        /* Process Section */
-        .process-steps {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .process-steps::before {
-            content: '';
-            position: absolute;
-            width: 4px;
-            height: 100%;
-            background-color: var(--accent);
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .process-step {
-            position: relative;
-            margin-bottom: 40px;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            width: calc(50% - 40px);
-        }
-        
-        .process-step:nth-child(odd) {
-            margin-right: auto;
-        }
-        
-        .process-step:nth-child(even) {
-            margin-left: auto;
-        }
-        
-        .step-number {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            background-color: var(--accent);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-            top: 20px;
-        }
-        
-        .process-step:nth-child(odd) .step-number {
-            right: -60px;
-        }
-        
-        .process-step:nth-child(even) .step-number {
-            left: -60px;
-        }
-        
-        .step-content h3 {
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-        
-        /* Contact Section */
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .contact-info {
-            background-color: var(--primary);
-            color: white;
-            padding: 30px;
-            border-radius: 10px;
-        }
-        
-        .contact-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .contact-info h3::after {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 3px;
-            background-color: var(--accent);
-            bottom: 0;
-            left: 0;
-        }
-        
-        .info-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .info-item i {
-            font-size: 1.2rem;
-            color: var(--accent);
-            margin-left: 15px;
-        }
-        
-        .contact-form {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        
-        .submit-btn:hover {
-            background-color: var(--primary);
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 50px 0 20px;
-        }
-        
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-        
-        .footer-col h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-col h3::after {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 3px;
-            background-color: var(--accent);
-            bottom: 0;
-            left: 0;
-        }
-        
-        .footer-col ul {
-            list-style: none;
-        }
-        
-        .footer-col ul li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-col ul li a {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            transition: 0.3s;
-        }
-        
-        .footer-col ul li a:hover {
-            color: var(--accent);
-            padding-right: 5px;
-        }
-        
-        .footer-social {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .footer-social a {
-            color: white;
-            font-size: 1.2rem;
-            transition: 0.3s;
-        }
-        
-        .footer-social a:hover {
-            color: var(--accent);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.7);
-        }
-        
-        /* Animations */
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
-        /* Responsive */
+
+        .content-section h2 {
+            color: #FFD700;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #8B0000;
+        }
+
+        .content-box {
+            background-color: rgba(70, 0, 0, 0.7);
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .content-box p, .content-box li {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .content-box ol, .content-box ul {
+            padding-right: 2rem;
+        }
+
+        .content-box strong {
+            color: #FFD700;
+        }
+
+        .content-section h3 {
+            color: #FFD700;
+            margin: 1.5rem 0 1rem;
+            font-size: 1.5rem;
+        }
+
+        .question {
+            background-color: rgba(90, 0, 0, 0.7);
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .question h3 {
+            color: #FFD700;
+            margin-bottom: 1rem;
+            cursor: pointer; /* Make the question clickable */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 0.5rem; /* Add padding to separate from potential border */
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3); /* Subtle border */
+            transition: border-bottom 0.3s ease;
+        }
+
+        .question h3:hover {
+            border-bottom: 1px solid #FFD700; /* Highlight border on hover */
+        }
+
+        .question h3 .toggle-icon {
+            font-size: 1.8rem; /* Larger icon */
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .question h3.expanded .toggle-icon {
+            transform: rotate(45deg); /* Rotate for a "close" effect */
+        }
+
+        .answer-content {
+            display: none; /* Hidden by default */
+            padding-top: 1rem; /* Space between question and answer */
+            animation: slideDown 0.5s ease-out; /* Animation for showing answer */
+        }
+
+        .answer-content.show {
+            display: block; /* Show when 'show' class is added */
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: rgba(70, 0, 0, 0.7);
+            margin-top: 3rem;
+            border-top: 3px solid #8B0000;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        footer a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        #back-to-top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: #8B0000;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        #back-to-top:hover {
+            background-color: #FFD700;
+            color: #8B0000;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 100; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+            align-items: center; /* Center content vertically */
+            justify-content: center; /* Center content horizontally */
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            display: flex; /* Only display flex when 'show' class is present */
+        }
+
+        .modal-content {
+            background-color: rgba(70, 0, 0, 0.9);
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            text-align: center;
+            color: #FFD700;
+            font-size: 1.2rem;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .modal-overlay.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-button {
+            color: #FFD700;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Phrase styling for clickability */
+        .clickable-phrase {
+            cursor: pointer;
+            text-decoration: underline;
+            color: #FFD700;
+            transition: color 0.3s ease;
+        }
+
+        .clickable-phrase:hover {
+            color: #fff;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
             .header-container {
-                flex-direction: row; /* Keep logo and toggle on one row */
-                justify-content: space-between;
-                align-items: center;
-            }
-            
-            nav {
-                position: fixed; /* Changed to fixed to be relative to viewport */
-                top: 72px; /* Set explicit top based on header height */
-                left: 0;
-                width: 100vw; /* 100% of viewport width */
-                background: linear-gradient(to right, var(--primary), var(--secondary));
-                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-                display: none; /* Hidden by default */
                 flex-direction: column;
-                align-items: center;
-                padding: 10px 0;
-                opacity: 0;
-                transform: translateY(-10px);
-                transition: opacity 0.3s ease-out, transform 0.3s ease-out;
-            }
-
-            nav.active {
-                display: flex; /* Show when active */
-                opacity: 1;
-                transform: translateY(0);
+                padding: 1rem;
             }
             
-            nav ul {
-                flex-direction: column; /* Stack items vertically */
-                align-items: center; /* Center items when stacked */
-                gap: 10px; /* Add some space between stacked items */
-                width: 100%; /* Ensure ul takes full width of its parent (nav) */
+            .logo-container {
+                margin-bottom: 1rem;
             }
             
-            nav ul li {
-                margin: 0; /* Remove horizontal margin */
-                width: 100%; /* Make list items take full width of ul */
-                text-align: center; /* Center text within list items */
-            }
-
-            nav ul li a {
-                display: block; /* Make links block-level for better click area */
-                padding: 10px 0; /* Adjust padding for stacked links */
-            }
-
-            .menu-toggle {
-                display: block; /* Show hamburger icon */
-            }
-            
-            .hero {
-                margin-top: 0; /* Removed as body padding-top handles it */
-            }
-
-            .hero h1 {
+            header h1 {
                 font-size: 2rem;
             }
             
-            .hero p {
+            header p {
                 font-size: 1rem;
             }
             
-            .about-container {
-                grid-template-columns: 1fr;
-                text-align: center;
+            .content-section h2 {
+                font-size: 1.7rem;
             }
             
-            .section-title h2 {
-                font-size: 2rem;
+            .content-box {
+                padding: 1.5rem;
             }
             
-            .process-steps::before {
-                left: 30px;
+            #menu ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .modal-content {
+                padding: 20px;
+                font-size: 1rem;
+            }
+            .close-button {
+                font-size: 24px;
+                top: 5px;
+                right: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.7rem;
             }
             
-            .process-step {
-                width: calc(100% - 80px);
-                margin-right: 0 !important;
-                margin-left: 80px !important;
+            .content-section h2 {
+                font-size: 1.5rem;
             }
             
-            .process-step:nth-child(odd) .step-number,
-            .process-step:nth-child(even) .step-number {
-                left: -60px;
-                right: auto;
+            .content-box {
+                padding: 1rem;
+            }
+            
+            .content-box p, .content-box li {
+                font-size: 1rem;
+            }
+            
+            .logo {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .name {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <img src="https://placehold.co/40x40/1a1a2e/f1f1f1?text=Logo" alt="Logo"> <!-- Placeholder for logo -->
-                <div class="logo-text">كرنفال زكريا</div>
+    <div class="background-image"></div>
+    <div class="overlay"></div>
+    
+    <div class="header-container">
+        <div class="title-container">
+            <h1>عقيدة التجسد الإلهي</h1>
+            <p>"عظيم هو سر التقوى: الله ظهر في الجسد" (1 تيموثاوس 3 : 16)</p>
+        </div>
+        
+        <div class="logo-container">
+            <div class="name">Ⲡⲓⲛⲉϣⲧ</div>
+            <!-- Placeholder image for logo -->
+            <img src="R.jpg.jpeg" alt="لوجو" class="logo">
+        </div>
+    </div>
+
+    <main>
+        <section id="menu">
+            <h2>فهرس المحتويات</h2>
+            <ul>
+                <li><a href="#concept">مفهوم التجسد الإلهي</a></li>
+                <li><a href="#can-god-incarnate">هل الله يمكنه أن يتجسد؟</a></li>
+                <li><a href="#importance">أهمية عقيدة التجسد الإلهي</a></li>
+                <li><a href="#preparation">تهيئة الأذهان للتجسد الإلهي</a></li>
+                <li><a href="#how">كيف يجسد كلمة الله؟</a></li>
+                <li><a href="#why">لماذا التجسد؟</a></li>
+                <li><a href="#liturgy">التجسد في صلوات القداس الإلهي</a></li>
+                <li><a href="#questions">أسئلة حول التجسد الإلهي</a></li>
+            </ul>
+        </section>
+
+        <section id="concept" class="content-section">
+            <h2>أولاً: مفهوم التجسد الإلهي</h2>
+            <div class="content-box">
+                <p>إن الله وهو ملك الملوك ورب الأرباب قد أخلى ذاته من صورة المجد وإتخذ جسداً إنسانياً (طبيعة بشرية) فنقول: "تجسد وتأنس". فالله غير المنظور صار منظوراً وظهر في الجسد "عظيم هو سر التقوى الله ظهر في الجسد" (1 تيموثاوس 3 : 16).</p>
+                <p>والكلمة صار جسداً وحل بيننا ورأينا مجده مجداً كما لوحيد من الآب معلوم نعمة وحقاً (يوحنا 1: 14).</p>
             </div>
-            <button class="menu-toggle" id="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </button>
-            <nav id="main-nav">
+        </section>
+
+        <section id="can-god-incarnate" class="content-section">
+            <h2>ثانياً: هل الله يمكنه أن يتجسد؟</h2>
+            <div class="content-box">
+                <p>نعم يمكنه لأن الله قادر على كل شيء فإذا كان لا يستطيع أن يتجسد، إذا يوجد شيئ لا يستطيع أن يعمله والشئ الوحيد الذى لا يفعله الله هو الشر، وحيث إن التجسد هو عمل من أعمال القدرة وليس الضعف إذا هو في قدرة الله.</p>
+            </div>
+        </section>
+
+        <section id="importance" class="content-section">
+            <h2>ثالثاً: أهمية عقيدة التجسد الإلهي</h2>
+            <div class="content-box">
+                <ol>
+                    <li><strong>عقيدة جوهرية:</strong> لا يمكن التغاضي عنها فغيابها إلغاء للمسيحية.</li>
+                    <li><strong>عقيدة خلاصية:</strong> أي أساسية لخلاصنا، إذ كيف نخلص بدون فداء؟ وكيف يقدينا الله بدون سفك دم؟ وكيف يموت بدون تجسد؟</li>
+                    <li><strong>عقيدة إتحادية:</strong> بمعنى أن حلول كل ملء اللاهوت جسديا يمهد لسكني الله في أجسادنا البشرية أما إذا ارتفع اللاهوت عن الإتحاد بالناسوت فهذا معناه استحالة سكناه فينا وهذا هو الهلاك بعينه. فالإتحاد بالله هو طريق الملكوت والأبدية.</li>
+                </ol>
+            </div>
+        </section>
+        <section id="preparation" class="content-section">
+            <h2>رابعاً: تهيئة الأذهان للتجسد الإلهي</h2>
+            <div class="content-box">
+                <p>العقل البشري يصعُب عليه استيعاب ان يتجسد الله الخالق ، و ذلك لأن الانسان بطبيعته كائن محدود و الله غير محدود. هذا جعل الله يُمهد للإنسان مُنذ أدم أنه سوف يتم الخلاص به ، فجعل له شعبًا مُختارًا و ميزه عن بقية الشعوب بالشريعة و الناموس و أرسل لهم الأنبياء الذي من خلالهم كان يهيئ أيضا ل مجيئه ، و لكن لم تكن هذه هي الطريقة الوحيدة لكي يهيئ شعبه بل هيأهم عن طريق :-</p>
+                
+                <h3>1- نبوات مهدت للتجسد</h3>
+                <p>تنبأ الأنبياء عن نسب ربنا يسوع، فذكروا أنه سيأتي من نسل إمرأة (تكوين 3 : 15)
+                    <br>ومن نسل سام<a href="https://alketabalmokadas.net/read/AVDDV/GEN.9.26+27">(تكوين 9 : 26)</a>
+                    <br>ومن إبراهيم<a href="https://alketabalmokadas.net/read/AVDDV/GEN.22.18">(تكوين 22 : 18)</a>
+                    <br>ومن اسحق دون إسماعيل <a href="https://alketabalmokadas.net/read/AVDDV/GEN.21.12">(تكوين 21 : 12)</a>
+                    <br>ومن سبط يهوذا<a href="https://alketabalmokadas.net/read/AVDDV/GEN.49.10"> (تكوين 49 : 10)</a>
+                    <br>ومن نسل داود<a href="https://alketabalmokadas.net/read/AVDDV/PSA.89"> (مزمور 89)</a>
+                    <br>تنبأ أشعياء أنه سيولد من عذراء<a href="https://alketabalmokadas.net/read/AVDDV/ISA.7.14"> (أشعياء 7 : 14)</a>
+                    <br>تنبأ ميخا أنه سيولد في مدينة "بيت لحم"<a href="https://alketabalmokadas.net/read/AVDDV/MIC.2.5"> (ميخا 2 : 5)</a>
+                    <br>تنبأ دانيال عن زمن مجيئه<a href="https://alketabalmokadas.net/read/AVDDV/DAN.9.24"> (دانيال 9 : 24)</a>
+                    <br>تنبأ داود عن المجوس وهداياهم<a href="https://alketabalmokadas.net/read/AVDDV/PSA.72.10+11+12+13"> (مزمور 72 : 10)</a>
+                    <br>تنبأ أرميا عن مذبحة بيت لحم<a href="https://alketabalmokadas.net/read/AVDDV/JER.31.15"> (أرميا 31 : 15)</a>
+                    <br>تنبأ أشعياء عن مجيء العائلة المقدسة إلى مصر <a href="https://alketabalmokadas.net/read/AVDDV/ISA.19.1">(أشعياء 19 : 1)</a>
+                    <br>تنبأ هوشع عن عودة العائلة المقدسة إلى فلسطين<a href="https://alketabalmokadas.net/read/AVDDV/HOS.11.1"> (هوشع 11 : 1)</a></p>
+                
+                <h3>2- ظهورات مهدت للتجسد</h3>
+                <p>تمتلئ أسفار العهد القديم بالأحداث التي تعلن عن ظهورات لأقنوم الكلمة بصورة مرئية مثل ظهوره لإبراهيم (تكوين 18:1)، موسى (خروج 3)، منوح وزوجته (قضاة 13)، الفتية الثلاثة في الأتون (دانيال 3)، ورغم أن لكل ظهور مدلوله الخاص ورسالته التي تتعلق بالموقف نفسه، وكذلك تعلن هذه الظهورات عن الله من جهة وتدل على إمكانية تجسده من جهة أخرى فمادام الله إتخذ قديماً هيئة ملاك أو إنسان ليبته– للبشر فيروه ويتحادثوا معه فليس هناك ما يمنع أن يتخذ جسداً حقيقياً في ملء الزمان ليتمم الفداء.</p>
+                
+                <h3>3- رموز مهدت للتجسد</h3>
+                <p>من أمثلة هذه الرموز: سلم يعقوب (تكوين 28)، علاقة موسى (خروج 3)، المن النازل من السماء (خروج 16)، لوحا الشريعة (خروج 32)، خيمة الإجتماع (خروج 40) ومحتوياتها (المنارة الذهبية، تابوت العهد، طشت المغسلة، عصا هارون).</p>
+                
+                <h3>4- عوامل عالمية مهدت للتجسد</h3>
                 <ul>
-                    <li><a href="#home">الرئيسية</a></li>
-                    <li><a href="#about">عن الفريق</a></li>
-                    <li><a href="#story">قصة زكريا</a></li>
-                    <li><a href="#portfolio">معرض الأعمال</a></li>
-                    <li><a href="#videos">الفيديوهات</a></li>
-                    <li><a href="#team">فريق العمل</a></li>
-                    <li><a href="#process">خطوات العمل</a></li>
-                    <li><a href="#contact">تواصل معي</a></li>
+                    <li>انتشار عدد كبير من اليهود ومعلومهم في مناطق كثيرة في العالم وانتظارهم المسيا المنتظر والمخلص.</li>
+                    <li>وحدة اللغة بين الشعوب بسيادة اللغة اليونانية.</li>
+                    <li>الترجمة السبعينية لأسفار العهد القديم والتي ساعدت على انتشار هذه الأسفار بين شعوب العالم باللغة اليونانية.</li>
+                    <li>سيطرة الإمبراطورية الرومانية على العالم مما جعلها تمهد الطرق بين الأمم، فصار الانتقال أكثر سهولة ويسراً.</li>
+                    <li>انتشار الفلسفة اليونانية وما أحدثته من أثر في عقول وأفكار الناس فأرشدتهم إلى ضرورة الإعتقاد في إله واحد يضبط الكون بقوانين ثابتة.</li>
                 </ul>
-            </nav>
-        </div>
-    </header>
+            </div>
+        </section>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>مرحباً بكم في عالم NEW ERA</h1>
-            <p>أعمالي الفنية في التمثيل والأوبريتات والمسرحيات</p>
-            <a href="#about" class="cta-button">تعرف علينا</a>
-        </div>
-    </section>
+        <section id="how" class="content-section">
+            <h2>خامساً: كيف يجسد كلمة الله؟</h2>
+            <div class="content-box">
+               <h3><a href="https://alketabalmokadas.net/read/AVDDV/LUK.1.26+27+28+29+30+31+32+33+34+35">(لوقا 1 : 26-35)</a></h3>
+                <p><span id="incarnation-time-phrase" class="clickable-phrase"> في ملء الزمان</span>  طهر الروح القدس أحشاء العذراء مريم و كون منها جسد ربنا يسوع ناسوتًا خاليًا من الخطية الجدية (لأنه أتى بدون زرع بشر) و مُنذ الوهلة الأولى التي هيأ فيها الروح القدس فيها الناسوت في بطن العذراء اتحد اللاهوت به فلم يكن هناك وهلة من الزمن الناسوت خاليا من اللاهوت ، و نعترف بهذا دائما كل قداس " لاهوته لم يفارق ناسوته لحظة واحدة او طرقة عين " و كانت بطن العذراء هي معمل الاتحاد غير المفترق" (متى 1 : 20)</p>
+            </div>
+        </section>
 
-    <!-- About Team Section -->
-    <section class="about-team" id="about">
-        <div class="container about-container">
-            <div class="team-description">
-                <h2>من نحن؟</h2>
-                <p>فريق "كرنفال زكريا" هو مجموعة من الفنانين الموهوبين المتخصصين في تقديم الأعمال المسرحية الدينية والتاريخية، نهدف من خلال أعمالنا إلى إحياء التراث الديني وتقديمه بشكل فني راقٍ.</p>
-                <p>تأسس الفريق عام 2015 على يد مجموعة من خريجي كليات الفنون الجميلة، ومنذ ذلك الحين ونحن نقدم أعمالاً مميزة تجمع بين الأصالة الفنية والابتكار في الطرح.</p>
-                <p>نؤمن بأن الفن رسالة سامية، ونسعى من خلال أعمالنا إلى إيصال القيم الإنسانية والدينية بأسلوب معاصر وجذاب.</p>
+        <section id="why" class="content-section">
+            <h2>سادسا: لماذا التجسد؟</h2>
+            <div class="content-box">
+                <p><bold>خالق الكل لا يتراجع عن محبته ، و إنه يرغب في أن يفتقد مرضنا و حيرتنا <h4>"القديس الأنبا انطونيوس" </h4></bold></p>
+                <p>الله بعدما فسدت البشرية و جُرحت جُرج عظيم يحتاج إلى طبيب حقيقي يشفي هذا الجرح . افتقدنا الله برحمته مرسلًا لنا ابنه الوحيد الذي هو عقل الآب بذاته بكي يشفي ذلك الجَرح بعدما هيأنا و جعلنا مستعدين و لذلك</p>
+                <p><strong>تجسد ربنا يسوع من أجل أن:</strong></p>
+                <ol>
+                    <li><strong>يفدينا:</strong> "إن ابن الإنسان لم يأت ليخدم بل ليخدم وليبذل نفسه فدية عن كثيرين" (متى 20:28): "إن ابن الإنسان قد جاء لكى يخلص ما قد هلك" (متى 18:11).</li>
+                    <li><strong>يجدد طبيعتنا:</strong> أي يجدد خلق الإنسان فالطبيعة البشرية بتجسد ربنا يسوع لم تعد فاسدة فقد بارك هذه الطبيعة لتعود كما كانت على صورة الله ومثاله "أنا أتيت لتكون لهم حياة وليكون لهم أفضل" (يوحنا 10:10): "لذلك نقول في القداس الغريغوري:"باركت طبيعتي فيك".</li>
+                    <li><strong>يعلمنا:</strong> "تعلموا منى لأنى وديع ومتواضع القلب فتجدوا راحة لنفوسكم" (متى 11:28): "وقال للتلاميذ: "أنتم تدعوننى معلماً وسيداً وحسناً تقولون لأنى أنا كذلك" (يوحنا 13:13).</li>
+                    <li><strong>ينوب عن البشرية في كل عمل صالح:</strong> "يليق بنا أن نكمل كل بر" (متى 3:15): ويقول القديس أثناسيوس الرسولي: كان للخطية نتيجتان هما هلاك الإنسان وإغضاب قلب الله فجاء ربنا يسوع ليخلص الإنسان الهالك إذ ناب عنا في الموت وفى دفع ثمن الخطية، وجاء ليصلح قلب الله الغاضب بأن يقدم له ناسوتاً كاملاً يرضيه وهكذا ناب عنا في تكميل الناسوت وفى كل عمل صالح.</li>
+                    <li><strong>يقدم لنا مثلاً:</strong> "إني أعطيتكم مثلاً حتى كما صنعت أنا بكم تصنعون أنتم أيضاً" (يوحنا 13:15).</li>
+                    <li><strong>يفتح الطريق لسكنى الله في الإنسان:</strong> "من يأكل جسدي ويشرب دمي يثبت في وأنا فيه" (يوحنا 6:56): "هأنذا واقف على الباب وأقرع. إن سمع أحد صوتى وفتح الباب أدخل إليه وأتعشى معه وهو معى" (رؤيا 3:20).</li>
+                </ol>
+                <p>يقول الأنبا موسى أسقف الشباب: "اللاهوت إتحد بناسوت حقيقي كامل بلا خطية. تمهيداً ليسكن الله فينا بنعمه ومواهبه. وكما يدخل الهواء إلى صدر الإنسان دون أن يتحول إلى هواء كذلك يسكن الله في داخلنا بالمحبة. وكما تدخل الشمس إلى الحجرة فتضيء جنباتها وتدفئها كذلك يدخل شمس البر إلى حياتنا فيحييها من موت الخطية دون أن نتحول نحن إلى آلهة".</p>
             </div>
-            <div class="team-image">
-                <img src="https://placehold.co/600x400/1a1a2e/f1f1f1?text=Team+Image" alt="صورة الفريق"> <!-- Placeholder for team image -->
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Story of Prophet Zakariya Section -->
-    <section class="story-section" id="story">
-        <div class="container">
-            <div class="story-content">
-                <h2>قصة نبي الله زكريا عليه السلام</h2>
-                <p>زكريا عليه السلام هو نبي من أنبياء الله الصالحين، ورد ذكره في القرآن الكريم في عدة مواضع. كان يعمل نجاراً ويقوم برعاية بيت المقدس وخدمته.</p>
-                <p>عاش زكريا في وقت كان بنو إسرائيل في أمس الحاجة إلى الهداية، فدعاهم إلى عبادة الله الواحد وترك ما كانوا عليه من ضلال.</p>
-                <p>من أشهر قصصه طلبه الولد من الله وهو كبير السن وامرأته عاقر، فاستجاب الله لدعائه وبشره بيحيى عليه السلام الذي كان نبياً صالحاً من الصغر.</p>
-                <p>تعتبر قصة زكريا نموذجاً للصبر والثقة بالله والتضرع إليه، كما أنها تظهر قدرة الله على خرق السنن الكونية عندما يشاء.</p>
-                
-                <div class="story-image">
-                    <img src="https://images.unsplash.com/photo-1585011650347-c59c5334a2fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="تصوير لقصة زكريا">
-                </div>
-                
-                <p>في أعمالنا الفنية، نحاول تقديم قصة زكريا عليه السلام بأسلوب درامي مؤثر، مع الحفاظ على الأمانة في نقل القصة كما وردت في القرآن الكريم والسنة النبوية.</p>
-                <p>نركز في أعمالنا على الدروس المستفادة من القصة، مثل أهمية الدعاء والصبر والثقة بالله تعالى، وكيف أن الله قادر على كل شيء.</p>
+        <section id="liturgy" class="content-section">
+            <h2>سابعاً: التجسد في صلوات القداس الإلهي</h2>
+            <div class="content-box">
+                <ol>
+                    <li><strong>لحن أجبوس:</strong> قدوس الله قدوس القوى قدوس الحى الذى لا يموت الذى ولد من العذراء إرحمنا.</li>
+                    <li><strong>تجسد وتأنس:</strong> هذا الذى من الروح القدس ومن العذراء القديسة مريم تجسد وتأنس يقولها الكاهن وهو يضع يد بخور في المجمرة وذلك كما لامست حبات البخور الجمرة فخرج منها بخور زكى هكذا عندما إتحد اللاهوت بالناسوت في بطن العذراء فحل بيننا كلمة الله المتجسد ورأينا مجده.</li>
+                    <li><strong>قسمة صوم الميلاد:</strong> الكائن في حضن الآب منذ كل حين أتى وحل في الحشا البتولى غير الدنس ولدته وهي عذراء وبتوليتها مختومة.</li>
+                    <li><strong>قسمة الأربعين المقدسة:</strong> نسجد ونمجد إله الآلهة ورب الأرباب للذى تجسد من القديسة مريم ولدته في بيت لحم.</li>
+                    <li><strong>الإعتراف الأخير:</strong> إن هذا هو الجسد المحيى الذى أخذه ابنك الوحيد ربنا وإلهنا ومخلصنا يسوع المسيح من سيدتنا ملكتنا كلنا والدة الإله القديسة الطاهرة مريم.</li>
+                    <li><strong>في لحن التوزيع (بي أويك):</strong> يا مريم حملت في بطنك النور العقلى الذى من صلب الآب ولدته بغير دنس.</li>
+                </ol>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Portfolio Section -->
-    <section class="section" id="portfolio">
-        <div class="container">
-            <div class="section-title">
-                <h2>معرض الأعمال</h2>
-            </div>
-            
-            <div class="portfolio-filter">
-                <button class="filter-btn active" data-filter="all">الكل</button>
-                <button class="filter-btn" data-filter="acting">تمثيل</button>
-                <button class="filter-btn" data-filter="operetta">أوبريت</button>
-                <button class="filter-btn" data-filter="behind-scenes">خلف الكواليس</button>
-            </div>
-            
-            <div class="portfolio-grid">
-                <!-- Item 1 -->
-                <div class="portfolio-item" data-category="acting">
-                    <div class="portfolio-img">
-                        <img src="https://placehold.co/600x400/1a1a2e/f1f1f1?text=Acting+1" alt="عمل تمثيلي 1"> <!-- Placeholder for acting image -->
-                    </div>
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-info">
-                            <h3>مسرحية الحلم</h3>
-                            <p>دور البطولة في مسرحية درامية</p>
-                        </div>
+        <section id="questions" class="content-section">
+            <h2>ثامناً: أسئلة حول التجسد الإلهي</h2>
+            <div class="content-box">
+                <div class="question">
+                    <h3 class="question-header">كيف يتجسد الله والجسد يحد من وجوده في كل مكان؟ <span class="toggle-icon">+</span></h3>
+                    <div class="answer-content">
+                        <p>التجسد لا يحد من وجود الله في كل مكان، وقد قال ربنا يسوع نفسه "إن إجتمع إثنان أو ثلاثة باسمي فهناك أكون في وسطهم" (متى 18:20).</p>
+                        <p>يقول القديس أثناسيوس الرسولي: مع أنه يحوى كل الأشياء ولا يحتويه شيء إلا أنه كان كلمة في أبيه وحده. وهذا حتى مع وجوده في جسد بشرى معطياً الحياة له فقد كان من الطبيعي أن يمنح الحياة للكون كله في نفس الوقت. ومع كونه حاضراً في كل جزء (من الخليقة بقدرته) فهو خارج كل شيء بجوهره بينما صار معروفاً بأعماله التي عملها في الجسد فإنه كان في نفس الوقت ظاهراً أيضاً بواسطة أعماله في الكون كله.</p>
                     </div>
                 </div>
-                
-                <!-- Item 2 -->
-                <div class="portfolio-item" data-category="operetta">
-                    <div class="portfolio-img">
-                        <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="أوبريت 1">
-                    </div>
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-info">
-                            <h3>أوبريت الوطن</h3>
-                            <p>دور رئيسي في أوبريت غنائي</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Item 3 -->
-                <div class="portfolio-item" data-category="acting">
-                    <div class="portfolio-img">
-                        <img src="https://placehold.co/600x400/1a1a2e/f1f1f1?text=Acting+2" alt="عمل تمثيلي 2"> <!-- Placeholder for acting image -->
-                    </div>
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-info">
-                            <h3>فيلم الطريق</h3>
-                            <p>دور مساعد في فيلم روائي طويل</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Item 4 -->
-                <div class="portfolio-item" data-category="behind-scenes">
-                    <div class="portfolio-img">
-                        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="خلف الكواليس 1">
-                    </div>
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-info">
-                            <h3>تحضيرات المسرحية</h3>
-                            <p>لحظات من التحضير والبروفات</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Item 5 -->
-                <div class="portfolio-item" data-category="operetta">
-                    <div class="portfolio-img">
-                        <img src="https://images.unsplash.com/photo-1501612780327-45045538702b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="أوبريت 2">
-                    </div>
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-info">
-                            <h3>أوبريت الأمل</h3>
-                            <p>مشاركة في أوبريت غنائي راقص</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Item 6 -->
-                <div class="portfolio-item" data-category="behind-scenes">
-                    <div class="portfolio-img">
-                        <img src="https://images.unsplash.com/photo-1541178735493-479c1a27ed24?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80" alt="خلف الكواليس 2">
-                    </div>
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-info">
-                            <h3>لحظات تصوير</h3>
-                            <p>لقطات من كواليس التصوير</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Videos Section -->
-    <section class="section" id="videos">
-        <div class="container">
-            <div class="section-title">
-                <h2>أعمالي الفيديوية</h2>
-            </div>
-            
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe> <!-- Replace VIDEO_ID_1 with actual YouTube video ID -->
-            </div>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe> <!-- Replace VIDEO_ID_2 with actual YouTube video ID -->
+                <div class="question">
+                    <h3 class="question-header">كيف استطاع البشر أن يروا الله الذي لا يُرى؟ <span class="toggle-icon">+</span></h3>
+                    <div class="answer-content">
+                        <p>صحيح أن الله قال لموسى في القديم "لن الإنسان لا يراني ويعيش" (خروج 33:20).</p>
+                        <p>وقال بولس عن الله "الذى لم يره أحد من الناس ولا يقدر أن يراه" (1 تيموثاوس 6:16)، ولكن هذا الكلام ينطبق على اللاهوت مجرداً. وهذا أمر مستحيل فعلاً ولا يستطيع الإنسان ولا يحتمل رؤية اللاهوت. لذلك حين أراد الله أن ينزل إلى البشر لإتمام الفداء كان لابد أن يتخذ جسداً يخفى به اللاهوت. فتجسد من الروح القدس ومن العذراء مريم، ولأن الابن مساو للآب في الجوهر فإن من راه فقد رأى الآب (يوحنا 14:9).</p>
+                    </div>
                 </div>
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen></iframe> <!-- Replace VIDEO_ID_3 with actual YouTube video ID -->
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Team Section -->
-    <section class="section" id="team">
-        <div class="container">
-            <div class="section-title">
-                <h2>فريق العمل</h2>
-            </div>
-            
-            <div class="team-grid">
-                <!-- Member 1 -->
-                <div class="team-member">
-                    <div class="member-img">
-                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="المخرج">
-                    </div>
-                    <div class="member-info">
-                        <h3>أحمد محمد</h3>
-                        <p>مخرج</p>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Member 2 -->
-                <div class="team-member">
-                    <div class="member-img">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="مصمم الأزياء">
-                    </div>
-                    <div class="member-info">
-                        <h3>سارة أحمد</h3>
-                        <p>مصممة أزياء</p>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Member 3 -->
-                <div class="team-member">
-                    <div class="member-img">
-                        <img src="https://images.unsplash.com/photo-1545167622-3a6ac756afa4?ixlib=rb-1.2.1&auto=format&fit=crop&w=656&q=80" alt="مصور">
-                    </div>
-                    <div class="member-info">
-                        <h3>خالد محمود</h3>
-                        <p>مصور</p>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Member 4 -->
-                <div class="team-member">
-                    <div class="member-img">
-                        <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="مؤلف">
-                    </div>
-                    <div class="member-info">
-                        <h3>مريم علي</h3>
-                        <p>مؤلفة</p>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-linkedin"></i></a>
-                        </div>
+                <div class="question">
+                    <h3 class="question-header">هل التجسد يغير الله؟ لأنه قبل التجسد لم يكن له جسد وبعد التجسد صار له جسد؟ <span class="toggle-icon">+</span></h3>
+                    <div class="answer-content">
+                        <p>نؤمن في عقيدتنا أن الاتحاد بين اللاهوت والناسوت بدون إختلاط ولا امتزاج ولا تغيير ولا تحول، فاللاهوت لم يتغير بسبب إتحاده بالناسوت ولكن هناك قدرات كانت في الله منذ الأزل ولكنه يظهرها في الوقت المناسب، وهذا لا يعني أن الله قد تغير. فالتجسد ليس إضافة جديدة إلى طبيعة الله لأن طبيعة الله لم تضاف إليها المحبة مثلاً التي أعلنها على الصليب ولا أضيف إليها القدرة أن يظهر في الجسد. لكنه لا قدرات كانت فيه وتظهر في الوقت المناسب، ولكي يؤكد كلمة الله أنه لم يتغير ولم يفقد شيئاً من قدراته الإلهية بسبب التجسد تعمد أن تظهر قدراته الخارقة على الطبيعة وهو يعاني آلام الموت على الصليب ولهذا اختفت الشمس وأظلمت والأرض تزلزلت والصخور تشققت حتى إن قائد المئة لما رأى كل هذا قال: "حقاً كان هذا ابن الله" (متى 27:54): وبهذا تأكد لنا أن الله الكلمة المتجسد لم يفقد شيئاً من قدراته حتى وهو في أقصى آلام الصليب.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Process Section -->
-    <section class="section" id="process">
-        <div class="container">
-            <div class="section-title">
-                <h2>خطوات العمل</h2>
-            </div>
-            
-            <div class="process-steps">
-                <!-- Step 1 -->
-                <div class="process-step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>القراءة والتحضير</h3>
-                        <p>قراءة النص وفهم الشخصية وتحليلها بشكل كامل، دراسة السياق التاريخي والاجتماعي للعمل.</p>
-                    </div>
-                </div>
-                
-                <!-- Step 2 -->
-                <div class="process-step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>البروفات الأولية</h3>
-                        <p>بدء البروفات مع المخرج وفريق العمل، استكشاف تفاصيل الشخصية وطريقة الأداء.</p>
-                    </div>
-                </div>
-                
-                <!-- Step 3 -->
-                <div class="process-step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>التصوير أو العروض المسرحية</h3>
-                        <p>تنفيذ المشاهد حسب الجدول الزمني، العمل على تفاصيل الأداء مع فريق التصوير أو المسرح.</p>
-                    </div>
-                </div>
-                
-                <!-- Step 4 -->
-                <div class="process-step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>المونتاج والمراجعة</h3>
-                        <p>مشاهدة المواد المصورة وتقديم الملاحظات، المشاركة في عملية المونتاج النهائي.</p>
-                    </div>
-                </div>
-                
-                <!-- Step 5 -->
-                <div class="process-step">
-                    <div class="step-number">5</div>
-                    <div class="step-content">
-                        <h3>العرض والتقييم</h3>
-                        <p>عرض العمل على الجمهور، جمع التقييمات والملاحظات للتحسين في الأعمال القادمة.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="section" id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>تواصل معي</h2>
-            </div>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>معلومات الاتصال</h3>
-                    <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <p>القاهرة، مصر</p>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-phone"></i>
-                        <p>+20 123 456 7890</p>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-envelope"></i>
-                        <p>info@newera.com</p>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-clock"></i>
-                        <p>السبت - الخميس: 9:00 صباحاً - 5:00 مساءً</p>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form action="#" method="POST">
-                        <div class="form-group">
-                            <label for="name">الاسم الكامل</label>
-                            <input type="text" id="name" name="name" class="form-control" placeholder="أدخل اسمك" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">البريد الإلكتروني</label>
-                            <input type="email" id="email" name="email" class="form-control" placeholder="أدخل بريدك الإلكتروني" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">الموضوع</label>
-                            <input type="text" id="subject" name="subject" class="form-control" placeholder="موضوع الرسالة" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">رسالتك</label>
-                            <textarea id="message" name="message" class="form-control" placeholder="اكتب رسالتك هنا..." required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">إرسال الرسالة</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
-        <div class="container footer-container">
-            <div class="footer-col">
-                <h3>عن الفريق</h3>
-                <p>فريق "كرنفال زكريا" متخصص في تقديم الأعمال المسرحية الدينية والتاريخية، بهدف إحياء التراث الديني بشكل فني راقٍ.</p>
-            </div>
-            <div class="footer-col">
-                <h3>روابط سريعة</h3>
-                <ul>
-                    <li><a href="#home">الرئيسية</a></li>
-                    <li><a href="#about">عن الفريق</a></li>
-                    <li><a href="#story">قصة زكريا</a></li>
-                    <li><a href="#portfolio">معرض الأعمال</a></li>
-                    <li><a href="#contact">تواصل معنا</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>معلومات الاتصال</h3>
-                <ul>
-                    <li><i class="fas fa-map-marker-alt"></i> القاهرة، مصر</li>
-                    <li><i class="fas fa-phone"></i> +20 123 456 7890</li>
-                    <li><i class="fas fa-envelope"></i> info@newera.com</li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>تابعنا</h3>
-                <div class="footer-social">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>&copy; 2024 كرنفال زكريا. جميع الحقوق محفوظة.</p>
-        </div>
+        <p>© 2025 عقيدة التجسد الإلهي. جميع الحقوق محفوظة.</p>
+        <p>مصدر: <a href="https://coptic-treasures.com/" target="_blank">كنوز قبطية</a></p>
     </footer>
 
+    <button id="back-to-top" title="العودة إلى الأعلى">↑</button>
+
+    <!-- The Modal HTML Structure -->
+    <div id="myModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <p>اي في الوقت الذي رآه الله مناسبا بعد ان اعد العالم و البشرية</p>
+        </div>
+    </div>
+
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('nav ul li a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                // Close the mobile menu if it's open
-                const mainNav = document.getElementById('main-nav');
-                if (mainNav.classList.contains('active')) {
-                    mainNav.classList.remove('active');
+        // JavaScript Code
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Update URL without page jump
+                        if (history.pushState) {
+                            history.pushState(null, null, targetId);
+                        } else {
+                            location.hash = targetId;
+                        }
+                    }
+                });
+            });
+            
+            // Back to top button
+            const backToTopButton = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.style.display = 'block';
+                } else {
+                    backToTopButton.style.display = 'none';
                 }
-
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
+            });
+            
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
                     behavior: 'smooth'
                 });
             });
-        });
-
-        // Portfolio filtering logic
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const portfolioItems = document.querySelectorAll('.portfolio-item');
-
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Remove 'active' class from all buttons
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    // Add 'active' class to the clicked button
-                    this.classList.add('active');
-
-                    const filterValue = this.getAttribute('data-filter');
-
-                    portfolioItems.forEach(item => {
-                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                            item.style.display = 'block'; // Show the item
-                        } else {
-                            item.style.display = 'none'; // Hide the item
-                        }
-                    });
+            
+            // Highlight current section in menu
+            const sections = document.querySelectorAll('.content-section');
+            const menuItems = document.querySelectorAll('#menu a');
+            
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (pageYOffset >= sectionTop - 200) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                menuItems.forEach(item => {
+                    item.classList.remove('active');
+                    // Changed to .includes() for robustness, as href might be "#id" and current is "id"
+                    if (item.getAttribute('href').includes(current) && current !== '') {
+                        item.classList.add('active');
+                    }
                 });
             });
+            
+            // Animation for content sections when they come into view
+            const animateOnScroll = function() {
+                const windowHeight = window.innerHeight;
+                const windowTop = window.pageYOffset;
+                const windowBottom = windowTop + windowHeight;
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    
+                    // Check if section is in view
+                    if (sectionBottom >= windowTop && sectionTop <= windowBottom) {
+                        section.style.opacity = '1';
+                        section.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // Set initial state for sections
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+            
+            window.addEventListener('scroll', animateOnScroll);
+            window.addEventListener('load', animateOnScroll);
+            
+            // Trigger initial animation check
+            animateOnScroll();
 
-            // Mobile menu toggle logic
-            const menuToggle = document.getElementById('menu-toggle');
-            const mainNav = document.getElementById('main-nav');
+            // Modal functionality
+            const phraseElement = document.getElementById('incarnation-time-phrase');
+            const modal = document.getElementById('myModal');
+            const closeButton = document.querySelector('.close-button');
 
-            menuToggle.addEventListener('click', function() {
-                mainNav.classList.toggle('active');
+            if (phraseElement && modal && closeButton) {
+                phraseElement.addEventListener('click', function() {
+                    modal.classList.add('show');
+                });
+
+                closeButton.addEventListener('click', function() {
+                    modal.classList.remove('show');
+                });
+
+                // Close the modal if the user clicks outside of the modal content
+                modal.addEventListener('click', function(event) {
+                    if (event.target === modal) {
+                        modal.classList.remove('show');
+                    }
+                });
+            }
+
+            // Accordion functionality for questions and answers
+            const questionHeaders = document.querySelectorAll('.question-header');
+
+            questionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    // Get the sibling answer content div
+                    const answerContent = this.nextElementSibling;
+                    const toggleIcon = this.querySelector('.toggle-icon');
+
+                    // Toggle the 'show' class
+                    if (answerContent.classList.contains('show')) {
+                        answerContent.classList.remove('show');
+                        this.classList.remove('expanded'); // Remove expanded class from header
+                        if (toggleIcon) toggleIcon.textContent = '+'; // Change icon to plus
+                    } else {
+                        // Close other open answers if any (optional, but good for UX)
+                        document.querySelectorAll('.answer-content.show').forEach(openAnswer => {
+                            openAnswer.classList.remove('show');
+                            openAnswer.previousElementSibling.classList.remove('expanded');
+                            openAnswer.previousElementSibling.querySelector('.toggle-icon').textContent = '+';
+                        });
+
+                        answerContent.classList.add('show');
+                        this.classList.add('expanded'); // Add expanded class to header
+                        if (toggleIcon) toggleIcon.textContent = 'x'; // Change icon to 'x' or '−'
+                    }
+                });
             });
         });
     </script>
